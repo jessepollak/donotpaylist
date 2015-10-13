@@ -1,6 +1,6 @@
 # Do not pay list
 
-The goal of this project is to create a community maintained list of malicious (or problematic) Bitcoin addresses.
+The Do Not Pay List provides a tool for Bitcoin users to report Bitcoin addresses associated with fraud or other malicious activity to a community maintained list. This list can be used by Bitcoin wallet providers to provide enhanced user feedback with regards to malicious addresses. 
 
 # User types
 
@@ -34,9 +34,12 @@ An individual or organization should be able to make a _statement_ about a walle
 
 * type
     - malicious
-    - address_overflow
-* description
+    - big query
 
+* description
+    - malicious - let us know what happened 
+    - big query - Is a particular Bitcoin address causing issues for your system. Let other wallet providers know what to look out for.
+    
 # Address quality score
 
 An address in the system should have a score based on the number and type of statements made against it.
