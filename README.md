@@ -43,3 +43,36 @@ An individual or organization should be able to make a _statement_ about a walle
 # Address quality score
 
 An address in the system should have a score based on the number and type of statements made against it.
+
+# API
+
+##Get List of Malicious Addresses
+
+**HTTP Request**
+```
+GET /api/v1/malicious
+```
+Parameters
+
+```
+Field                    Description
+
+Votes                    Denote the minimum amount of votes per address (1,2,...,10);
+```
+
+##Get List of Blacklisted Addresses
+
+**HTTP Request**
+```
+GET /api/v1/blacklist
+```
+
+Parameters
+
+```
+Field                    Description
+
+Votes                    Denote the minimum amount of votes per address (1,2,...,10);
+```
+
+
