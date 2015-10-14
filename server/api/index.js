@@ -10,6 +10,7 @@ var authentication = require('./authentication')
 router.use(authentication)
 
 require('./addresses')(router)
+require('./reports')(router)
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {

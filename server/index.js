@@ -1,10 +1,10 @@
-var express = require('express');
-var fs = require('fs');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var secrets = require('./config/secrets');
+var mongoose = require('mongoose')
+var express = require('express')
+var fs = require('fs')
+var passport = require('passport')
+var secrets = require('./config/secrets')
 
-var app = express();
+var app = express()
 
 // Find the appropriate database to connect to, default to localhost if not found.
 var connect = function() {
