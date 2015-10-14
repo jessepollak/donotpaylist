@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize')
 var Promise = require('bluebird')
+var models = require('./index')
 
 module.exports = function(sequelize, DataTypes) {
   var Report = sequelize.define('report', {
@@ -34,6 +35,13 @@ module.exports = function(sequelize, DataTypes) {
               next()
             }
           }, next)
+      }
+    },
+    hooks: {
+      beforeCreate: function createRelevantAddress(report, options, next) {
+        sequelize.models.Address
+          .findOrCreate({ where: { id: report.address_id }})
+            .then(next.bind(null, null), next)
       }
     }
   })

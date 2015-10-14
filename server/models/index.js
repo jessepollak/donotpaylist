@@ -21,7 +21,8 @@ fs
   .forEach(function(file) {
     var model = sequelize.import(path.join(__dirname, file));
     var capitalizedName = model.name.charAt(0).toUpperCase() + model.name.slice(1)
-    db[capitalizedName] = model;
+    db[capitalizedName] = model
+    sequelize.models[capitalizedName] = model
   });
 
 Object.keys(db).forEach(function(modelName) {

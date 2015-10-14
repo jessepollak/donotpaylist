@@ -13,6 +13,7 @@ var convertSequelizeError = function(error) {
   }
 }
 module.exports.handleErrorsJSON = function(err, req, res, next) {
+  console.error("ERROR: ", err)
   if (err instanceof Sequelize.Error) {
     err = convertSequelizeError(err)
   }
