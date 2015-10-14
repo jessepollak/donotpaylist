@@ -59,6 +59,39 @@ An address in the system should have a score based on the number and type of sta
 
 # API
 
+## Addresses
+
+```
+GET /api/v1/addresses
+GET /api/v1/addresses/:addressID
+```
+
+## Report
+
+A report is a negative vote against an address.
+
+There are two types of reports:
+
+    * _malicious_ - the address belongs to an evildoer
+    * _technical_ - the address is causing the wallet to experience technical difficulties
+
+```
+GET /api/v1/reports # get a list of all reports (filter by address)
+POST /api/v1/reports # create a report
+
+    * type - (string) malicious|technical
+    * description - (string) a prose description of the report
+```
+
+## Endorse
+
+An endorsement is a positive vote for an address.
+
+```
+GET /api/v1/endorsements # get a list of all endorsements (filter by address)
+POST /api/v1/endorsements # create an endorsement
+```
+
 ##Get List of Malicious Addresses
 
 **HTTP Request**
