@@ -1,15 +1,23 @@
-var mongoose = require('mongoose')
+module.exports = function(sequelize, DataTypes) {
+  var Report = sequelize.define('Report', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    type: {
+      type: DataTypes.STRING,
+      required: true
+    },
+    description: DataTypes.STRING
+  }, {
+    classMethods: {
+      associate: function(models) {
+        Report.belongsTo(models.Address)
+        Report.belongsTo(models.User)
+      }
+    }
+  })
 
-var ReportSchema = new mongoose.Schema({
-  address: { type: mongoose.Schema.Types.ObjectId, ref: 'Address', required: true },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  type: { type: String, required: true },
-  description: String,
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
-})
-
-ReportSchema.methods = {}
-ReportSchema.statics = {}
-
-module.exports = mongoose.model('Report', ReportSchema)
+  return Report
+}

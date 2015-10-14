@@ -2,7 +2,6 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var MongoStore =  require('connect-mongo')(session);
 var path = require('path');
 var secrets = require('./secrets');
 var flash = require('express-flash');
@@ -68,8 +67,7 @@ module.exports = function (app, passport) {
     // If secure is set, and you access your site over HTTP, the cookie will not be set
     cookie: {
       httpOnly: true
-    },
-    store: new MongoStore({ url: secrets.db, autoReconnect: true})
+    }
   };
 
   var node_env = process.env.NODE_ENV;
@@ -84,7 +82,7 @@ module.exports = function (app, passport) {
   app.use(passport.session());
 
   app.use(flash());
-  
+
   var port = (node_env === 'production') ? app.get('port') : 3000;
 
   // We only run this workflow when not in Production && require a hot-loader

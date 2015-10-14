@@ -1,41 +1,29 @@
-/**
- * Defining a User Model in mongoose
- * Code modified from https://github.com/sahat/hackathon-starter
- */
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    clef_id: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    logged_out_at: {
+      type: DataTypes.INTEGER
+    }
+  }, {
+    classMethods: {
+      associate: function(models) {
+        User.hasMany(models.Report)
+        User.hasMany(models.Endorsement)
+      }
+    }
+  })
 
-var mongoose = require('mongoose');
-
-// Other oauthtypes to be added
-
-/*
- User Schema
- */
-
-var UserSchema = new mongoose.Schema({
-  email: { type: String, unique: true, lowercase: true},
-  tokens: Array,
-  profile: {
-    name: { type: String, default: ''},
-    gender: { type: String, default: ''},
-    location: { type: String, default: ''},
-    website: { type: String, default: ''},
-    picture: { type: String, default: ''}
-  },
-});
-
-
-
-/*
- Defining our own custom document instance method
- */
-UserSchema.methods = {};
-
-/**
- * Statics
- */
-
-UserSchema.statics = {}
-
-
-
-module.exports = mongoose.model('User', UserSchema);
+  return User
+}

@@ -1,13 +1,18 @@
-var mongoose = require('mongoose')
+module.exports = function(sequelize, DataTypes) {
+  var Endorsement = sequelize.define('Endorsement', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    }
+  }, {
+    classMethods: {
+      associate: function(models) {
+        Endorsement.belongsTo(models.Address)
+        Endorsement.belongsTo(models.User)
+      }
+    }
+  })
 
-var EndorsementSchema = new mongoose.Schema({
-  address: { type: mongoose.Schema.Types.ObjectId, ref: 'Address' },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
-})
-
-EndorsementSchema.methods = {}
-EndorsementSchema.statics = {}
-
-module.exports = mongoose.model('Endorsement', EndorsementSchema)
+  return Endorsement
+}
