@@ -1,17 +1,27 @@
 var Promise = require('bluebird')
+var models = require('../models')
+var Report = models.Report
 
-
-// exports.postReport = Promise.coroutine(
-//   function *postReport(req) {
-//     return 'welcome to the post report controller!';
-// });
-
-// exports.getReport = Promise.coroutine(
-//   function *getReport(req) {
-//     return 'welcome to the get report controller!';
-// });
-
-
-module.exports = function(router) {
-
+function addUser(req, res, next) {
+  req.body.user_id = req.user.id
+  next()
 }
+
+exports.postReport = [
+  addUser,
+  Promise.coroutine(
+    function *postReport(req, res, next) {
+      return Report.createFromAPI(req.body)
+        .then(function(object) {
+          res.send('ok')
+        }, next)
+    }
+  )
+]
+
+exports.getReport = Promise.coroutine(
+  function getReport(req, res) {
+    return models.Report.findOne()
+      .then(res.send, res.send)
+  }
+)

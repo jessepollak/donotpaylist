@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Endorsement = sequelize.define('Endorsement', {
+  var Endorsement = sequelize.define('endorsement', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,

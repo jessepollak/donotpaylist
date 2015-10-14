@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Address = sequelize.define('Address', {
+  var Address = sequelize.define('address', {
     id: {
       type: DataTypes.STRING,
       primaryKey: true
