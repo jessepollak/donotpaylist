@@ -72,8 +72,8 @@ A report is a negative vote against an address.
 
 There are two types of reports:
 
-    * _malicious_ - the address belongs to an evildoer
-    * _technical_ - the address is causing the wallet to experience technical difficulties
+* _malicious_ - the address belongs to an evildoer
+* _technical_ - the address is causing the wallet to experience technical difficulties
 
 ```
 GET /api/v1/reports # get a list of all reports (filter by address)
