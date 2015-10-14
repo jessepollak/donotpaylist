@@ -4,8 +4,8 @@ var reportAPI = require('../controllers/report.js');
 var userAPI = require('../controllers/user.js');
 
 // Address
-function getAddress(req, res) {
-  res.send('get address api')
+function getAddress(req, res) {  
+  res.send('get address api: ');
 }
 
 function postAddress(req, res) {
@@ -25,10 +25,10 @@ function postReport(req, res) {
 module.exports = function(router) {
   // Address routes
   router.route('/address/')
-    .get(getAddress)
+  .get(getAddress)
 
   router.route('/address/:address')
-    .post(postAddress)
+  .post(postAddress)
 
   // Report routes
   reportAPI(router)
