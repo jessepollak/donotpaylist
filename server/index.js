@@ -4,6 +4,9 @@ var fs = require('fs')
 var passport = require('passport')
 var secrets = require('./config/secrets')
 
+// monkypatch restful!
+require('./lib/restful')
+
 var app = express()
 
 // Find the appropriate database to connect to, default to localhost if not found.
