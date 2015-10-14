@@ -1,6 +1,6 @@
+
 var express = require('express')
 var bodyParser = require('body-parser')
-
 
 var router = express.Router()
 router.use(bodyParser.urlencoded({ extended: true }))
@@ -9,8 +9,7 @@ router.use(bodyParser.json())
 var authentication = require('./authentication')
 router.use(authentication)
 
-require('./addresses')(router)
-require('./reports')(router)
+require('./routes')(router)
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
