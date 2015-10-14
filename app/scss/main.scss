@@ -1,0 +1,11 @@
+@import "components/home";
+
+body,
+body * {
+    font-family: 'Avenir', sans-serif;
+}
+
+.home__header,
+.home__subheader {
+    text-align: center;
+}

@@ -3,12 +3,17 @@
  */
 var express = require('express');
 var users = require('../controllers/users');
+var api = require('../api')
 var mongoose = require('mongoose');
 var _ = require('lodash');
 var Header = require('../../public/assets/header.server');
 var App = require('../../public/assets/app.server');
 
 module.exports = function(app, passport) {
+  // API routes
+  app.use('/api', api)
+  app.use('/api/v1', api)
+
   // user routes
   app.post('/login', users.postLogin);
   app.post('/signup', users.postSignUp);

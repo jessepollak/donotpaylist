@@ -12,7 +12,7 @@ export default class Navigation extends React.Component {
   render() {
     return (
       <nav role="navigation">
-          <Link to="/">Do Not Pay List</Link>
+          <Link to="/">Do Not Pay</Link>
           <Link to="/login">Log in</Link>
       </nav>
     );
