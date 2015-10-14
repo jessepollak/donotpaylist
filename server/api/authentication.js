@@ -1,7 +1,9 @@
+var mongoose = require('mongoose')
 var jwt = require('express-jwt')
 var secret = require('../config/secrets')
+var User = mongoose.model('User')
 
-module.exports = jwt({
+jwtMiddleware = jwt({
   secret: secret.jsonWebTokenSecret,
   credentialsRequired: false,
   getToken: function(req) {
@@ -18,3 +20,22 @@ module.exports = jwt({
 }).unless({
   path: ['/']
 })
+
+module.exports = function(req, res, next) {
+  jwtMiddleware(req, res, function(err) {
+    if (err) {
+      console.log('JWT error', error)
+      next(err)
+    } else {
+      User.findById(req.user.user_id, function(err, user) {
+        if (err) {
+          next(err)
+        }
+        else {
+          req.user = user
+          next()
+        }
+      })
+    }
+  })
+}
