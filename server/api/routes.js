@@ -21,6 +21,7 @@ function postReport(req, res) {
   res.send('post report api');
 }
 
+
 module.exports = function(router) {
   // Address routes
   router.route('/address/')
@@ -30,7 +31,5 @@ module.exports = function(router) {
     .post(postAddress)
 
   // Report routes
-  router.route('/report/:address')
-    .get(getReport)
-    .post(postReport)  
+  reportAPI(router)
 }
