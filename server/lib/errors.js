@@ -5,6 +5,7 @@ module.exports.ValidationFailedError = createError(400, 'Validation failed.')
 module.exports.RequiresAuthenticationError = createError(403, 'Requires authentication.')
 
 module.exports.RestfulError = function(status_code, errorBundle) {
+  console.log(errorBundle)
   return createError(status_code, errorBundle.message)
 }
 

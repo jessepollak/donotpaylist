@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
 
 var EndorsementSchema = new mongoose.Schema({
-  address: { type: String, ref: 'Address' },
-  user: { type: String, ref: 'User' },
+  address: { type: mongoose.Schema.Types.ObjectId, ref: 'Address' },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 })

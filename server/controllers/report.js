@@ -4,7 +4,6 @@ var Report = require('../models/report')
 
 var addUserBefore = function(req, res, next) {
   req.body.user = req.user.id
-  next()
 }
 
 module.exports = function(router) {
