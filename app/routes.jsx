@@ -1,11 +1,10 @@
+/* eslint no-unused-vars: 0 */
+import React from 'react';
 import Route from 'react-router';
 
+import Home from 'components/Home';
 import App from 'components/App';
-import Vote from 'components/Vote';
-import About from 'components/About';
 import Login from 'components/Login';
-import Logout from 'components/Logout';
-import Dashboard from 'components/Dashboard';
 
 import UserStore from 'stores/UserStore';
 
@@ -17,10 +16,7 @@ function requireAuth(nextState, replaceState) {
 
 export default (
   <Route component={App}>
-    <Route path="/" component={Vote} />
+    <Route path="/" component={Home} />
     <Route path="login" component={Login} />
-    <Route path="logout" component={Logout} />
-    <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
-    <Route path="about" component={About} />
   </Route>
 );

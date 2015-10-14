@@ -4,8 +4,6 @@ import Immutable from 'immutable';
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 
-import styles from 'scss/components/_login';
-
 export default class Login extends React.Component {
   /*
    * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
@@ -43,26 +41,20 @@ export default class Login extends React.Component {
   render() {
     let renderedResult;
     if (this.state.user.get('authenticated')) {
-      renderedResult = (<h1 className={styles.login__header}>You are logged in amigo</h1>);
+      renderedResult = (<h1>You are logged in amigo</h1>);
     } else {
       if (this.state.user.get('isWaiting')) {
-        renderedResult = (<h1 className={styles.login__header}>Waiting ...</h1>);
+        renderedResult = (<h1>Waiting ...</h1>);
       } else {
         renderedResult = (
-          <div className={styles.login__container}>
-            <h1 className={styles.login__header}>Email Login Demo</h1>
-            <fieldset className={styles.login__fieldset}>
-                <input className={styles.login__input} type="email" ref="email" placeholder="email" />
-                <input className={styles.login__input} type="password" ref="password" placeholder="password" />
-                <button className={styles.login__button + ' ' + styles['login__button--green']} onClick={this._onLoginSubmit}>Login</button>
-                <p className={styles.login__hint}>Hint: email: example@ninja.com password: ninja</p>
-            </fieldset>
+          <div>
+            <h1>Login will go here</h1>
           </div>
         );
       }
     }
     return (
-        <div className={styles.login}>
+        <div>
           {renderedResult}
         </div>
     );

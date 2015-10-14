@@ -1,3 +1,16 @@
+# Getting started
+
+To get started with development, run:
+
+```bash
+
+$ npm install
+$ npm run devHotLoader
+$ # now, in a separate tab
+$ run run watchHotLoader
+
+```
+
 # Do not pay list
 
 The Do Not Pay List provides a tool for Bitcoin users to report Bitcoin addresses associated with fraud or other malicious activity to a community maintained list. This list can be used by Bitcoin wallet providers to provide enhanced user feedback with regards to malicious addresses. 
