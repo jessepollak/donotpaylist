@@ -26,12 +26,16 @@ module.exports = function(req, res, next) {
       console.log('JWT error', error)
       next(err)
     } else {
-      models.User
-        .findOne({ id: req.user.user_id })
-        .then(function(user) {
-          req.user = user
-          next()
-        }, next)
+      if (req.user) {
+        models.User
+          .findOne({ id: req.user.user_id })
+          .then(function(user) {
+            req.user = user
+            next()
+          }, next)
+      } else {
+        next()
+      }
     }
   })
 }

@@ -3,36 +3,23 @@ var endorsementAPI = require('../controllers/endorsement.js');
 var reportAPI = require('../controllers/report.js');
 var userAPI = require('../controllers/user.js');
 
-// Address
-function getAddress(req, res) {
-  res.send('get address api: ');
-}
-
-function postAddress(req, res) {
-  res.send('post address api')
-}
-
-// Reports
-function getReport(req, res) {
-  res.send('get report api');
-}
-
-function postReport(req, res) {
-  res.send('post report api');
-}
-
-
 module.exports = function(router) {
   // Address routes
   router.route('/address/')
-  .get(getAddress)
+    .get(addressAPI.getAddresses)
 
-  router.route('/address/:address')
-  .post(postAddress)
+  router.route('/addresses/:addressID')
+    .get(addressAPI.getAddress)
 
   router.route('/reports')
     .post(reportAPI.postReport)
 
   router.route('/reports/:reportID')
     .get(reportAPI.getReport)
+
+  router.route('/endorsements')
+    .post(endorsementAPI.postEndorsement)
+
+  router.route('/endorsements/:endorsementID')
+    .get(endorsementAPI.getEndorsement)
 }

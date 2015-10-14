@@ -11,17 +11,17 @@ exports.postReport = [
   addUser,
   Promise.coroutine(
     function *postReport(req, res, next) {
+      console.log(Report.createFromAPI)
       return Report.createFromAPI(req.body)
         .then(function(object) {
-          res.send('ok')
+          res.sendModels(object)
         }, next)
     }
   )
 ]
 
 exports.getReport = Promise.coroutine(
-  function getReport(req, res) {
-    return models.Report.findOne()
-      .then(res.send, res.send)
+  function *getReport(req, res, next) {
+    return models.Report.findOne().then(res.sendModels, next)
   }
 )

@@ -5,6 +5,8 @@ var path      = require("path")
 var Sequelize = require("sequelize")
 var env       = process.env.NODE_ENV || "development"
 var secrets = require('../config/secrets')
+var ssaclAttributeRoles = require('ssacl-attribute-roles')
+var _ = require('underscore')
 var sequelize = new Sequelize(secrets.db, {
   define: {
     timestamps: true,
@@ -29,9 +31,47 @@ Object.keys(db).forEach(function(modelName) {
   if ("associate" in db[modelName]) {
     db[modelName].associate(db);
   }
+  if ("setRoles" in db[modelName]) {
+    ssaclAttributeRoles(db[modelName])
+    db[modelName].setRoles(db)
+  }
 });
+
+// set up roles
+ssaclAttributeRoles(sequelize)
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+function serialize(object) {
+  if (object) {
+    if (_.isArray(object)) {
+      return Promise.all(_.map(object, serialize))
+    } else if (_.isFunction(object.serialize)) {
+      return object.serialize({ role: 'public' }).then(serialize)
+    } else if (_.isObject(object)) {
+      return Promise.all(_.map(object, function(v, k) {
+        return serialize(v).then(function(data) {
+          object[k] = v
+        })
+      })).then(function() {
+        return object
+      })
+    }
+  }
+
+  return Promise.resolve(object)
+}
+
+db.middleware = function() {
+  return function(req, res, next) {
+    res.sendModels = function(maybeArray) {
+      serialize(maybeArray).then(function(data) {
+        res.json(data)
+      }, next)
+    }
+    next()
+  }
+}
 
 module.exports = db;

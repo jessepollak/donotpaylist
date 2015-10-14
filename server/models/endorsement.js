@@ -1,18 +1,17 @@
+var AddressUserVotable = require('../lib/mixins/addressUserVotable')
+
 module.exports = function(sequelize, DataTypes) {
-  var Endorsement = sequelize.define('endorsement', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    }
-  }, {
-    classMethods: {
-      associate: function(models) {
-        Endorsement.belongsTo(models.Address)
-        Endorsement.belongsTo(models.User)
+  var Endorsement = sequelize.define(
+    'endorsement',
+    {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
       }
-    }
-  })
+    },
+    AddressUserVotable.mixin({}, 'Endorsement', sequelize)
+  )
 
   return Endorsement
 }
