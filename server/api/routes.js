@@ -5,21 +5,14 @@ var userAPI = require('../controllers/user.js');
 
 module.exports = function(router) {
   // Address routes
-  router.route('/addresses/')
-    .get(addressAPI.getAddresses)
+  router.route('/addresses/').get(addressAPI.getAddresses)
+  router.route('/addresses/:addressID').get(addressAPI.getAddress)
+  router.route('/addresses/:addressID/reports').get(addressAPI.getAddressReports)
+  router.route('/addresses/:addressID/endorsements').get(addressAPI.getAddressEndorsements)
 
-  router.route('/addresses/:addressID')
-    .get(addressAPI.getAddress)
+  router.route('/reports').post(reportAPI.postReport)
+  router.route('/reports/:reportID').get(reportAPI.getReport)
 
-  router.route('/reports')
-    .post(reportAPI.postReport)
-
-  router.route('/reports/:reportID')
-    .get(reportAPI.getReport)
-
-  router.route('/endorsements')
-    .post(endorsementAPI.postEndorsement)
-
-  router.route('/endorsements/:endorsementID')
-    .get(endorsementAPI.getEndorsement)
+  router.route('/endorsements').post(endorsementAPI.postEndorsement)
+  router.route('/endorsements/:endorsementID').get(endorsementAPI.getEndorsement)
 }

@@ -6,15 +6,7 @@ var Address = models.Address
 
 exports.getAddress = Promise.coroutine(
   function *getAddress(req, res, next) {
-    return Address.find(
-        {
-          where: { id: req.params.addressID },
-          include: [
-            models.Report,
-            models.Endorsement
-          ]
-        }
-    ).then(res.sendModels, next)
+    return Address.findByID(req.params.addressID).then(res.sendModels, next)
   }
 );
 
@@ -26,6 +18,28 @@ exports.getAddresses = Promise.coroutine(
         models.Endorsement
       ]
     }).then(res.sendModels, next)
+  }
+);
+
+exports.getAddressReports = Promise.coroutine(
+  function *getAddressReports(req, res, next) {
+    return Address
+      .findByID(req.params.addressID)
+      .then(function(address) {
+        return address.reports
+      })
+      .then(res.sendModels, next)
+  }
+);
+
+exports.getAddressEndorsements = Promise.coroutine(
+  function *getAddressEndorsements(req, res, next) {
+    return Address
+      .findByID(req.params.addressID)
+      .then(function(address) {
+        return address.endorsements
+      })
+      .then(res.sendModels, next)
   }
 );
 

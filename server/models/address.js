@@ -42,6 +42,17 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     classMethods: {
+      findByID: function(id) {
+        return Address.find(
+          {
+            where: { id: id },
+            include: [
+              sequelize.models.Report,
+              sequelize.models.Endorsement
+            ]
+          }
+        )
+      },
       associate: function(models) {
         Address.hasMany(models.Report)
         Address.hasMany(models.Endorsement)
