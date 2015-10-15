@@ -5,7 +5,7 @@ var userAPI = require('../controllers/user.js');
 
 module.exports = function(router) {
   // Address routes
-  router.route('/address/')
+  router.route('/addresses/')
     .get(addressAPI.getAddresses)
 
   router.route('/addresses/:addressID')

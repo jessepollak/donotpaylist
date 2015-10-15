@@ -7,17 +7,25 @@ var Address = models.Address
 exports.getAddress = Promise.coroutine(
   function *getAddress(req, res, next) {
     return Address.find(
-        { id: req.params.addressID, include: [
-                models.Report,
-                models.Endorsement
-            ] }
+        {
+          where: { id: req.params.addressID },
+          include: [
+            models.Report,
+            models.Endorsement
+          ]
+        }
     ).then(res.sendModels, next)
   }
 );
 
 exports.getAddresses = Promise.coroutine(
   function *getAddress(req, res, next) {
-    return Address.findAll().then(res.sendModels, next)
+    return Address.findAll({
+      include: [
+        models.Report,
+        models.Endorsement
+      ]
+    }).then(res.sendModels, next)
   }
 );
 
