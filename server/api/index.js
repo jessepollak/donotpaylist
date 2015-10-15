@@ -1,13 +1,16 @@
 
 var express = require('express')
 var bodyParser = require('body-parser')
+var unless = require('express-unless')
 
 var router = express.Router()
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(bodyParser.json())
 
 var authentication = require('./authentication')
-router.use(authentication)
+router.use(authentication().unless({
+  method: ['GET']
+}))
 
 require('./routes')(router)
 

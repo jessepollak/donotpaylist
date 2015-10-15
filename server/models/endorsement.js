@@ -13,5 +13,5 @@ module.exports = function(sequelize, DataTypes) {
     AddressUserVotable.mixin({}, 'Endorsement', sequelize)
   )
 
-  return Endorsement
+  return { Endorsement: Endorsement }
 }
