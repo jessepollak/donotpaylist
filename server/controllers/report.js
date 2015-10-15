@@ -11,7 +11,6 @@ exports.postReport = [
   addUser,
   Promise.coroutine(
     function *postReport(req, res, next) {
-      console.log(Report.createFromAPI)
       return Report.createFromAPI(req.body)
         .then(function(object) {
           res.sendModels(object)

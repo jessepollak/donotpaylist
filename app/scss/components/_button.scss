@@ -1,0 +1,70 @@
+@import "../settings";
+
+.button {
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 156px;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  font-size: 14px;
+  line-height: 40px;
+
+  border-radius: 3px;
+  border: 1px solid;
+  transition: all .15s ease;
+
+  cursor: pointer;
+}
+
+.button--primary {
+  composes: button;
+  color: white;
+  background: $color-background;
+  border-color: #008cc7;
+  border-bottom-color: #0077a8;
+  border-bottom-color: #007aad;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04),
+              inset 0 0 1px rgba(255,255,255,.37),
+                    0 1px 0 rgba(0,0,0,.05);
+
+  &:hover, &:active, &:visited {
+    color: white;
+    background: #0c94cf;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.03),
+              inset 0 0 1px rgba(255,255,255,.3),
+                    0 1px 0 rgba(0,0,0,.05);
+  }
+
+  &:active, &:visited, &:focus {
+    color: white;
+  }
+}
+
+.button--secondary {
+  composes: button;
+  color: #333;
+  background: #f2f2f2;
+  border-color: #eaeaea;
+  border-bottom-color: #dedede;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1),
+              inset 0 0 1px rgba(255,255,255,1),
+                    0 1px 0 rgba(0,0,0,.02);
+
+  &:hover {
+    color: #1E262A;
+    background: #ededed;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08),
+                inset 0 0 1px rgba(255,255,255,.9),
+                      0 1px 0 rgba(0,0,0,.02);
+  }
+
+  &:active, &:visited, &:focus {
+    color: #333;
+  }
+
+  @media(max-width: 480px) {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}

@@ -22,10 +22,9 @@ var apiKeyAuth = function(req, res, next) {
 }
 
 var sessionAuth = function(req, res, next) {
-  console.log(req.session)
   if (req.session.user == undefined) { return next() }
 
-  models.User.find({ where: { id: req.session.user.id } }).then(function(user) {
+  models.User.find({ where: { id: req.session.user.id }, include: [models.APIKey] }).then(function(user) {
     if (!user || user.logged_out_at == null || user.logged_out_at < req.session.user.loggedInAt) {
       req.user = user
     } else {

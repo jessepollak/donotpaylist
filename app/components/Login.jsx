@@ -6,12 +6,9 @@ import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
 import ConfigStore from 'stores/ConfigStore'
 
+import styles from 'scss/components/_login'
+
 export default class Login extends React.Component {
-  /*
-   * This replaces getInitialState. Likewise getDefaultProps and propTypes are just
-   * properties on the constructor
-   * Read more here: https://facebook.github.io/react/blog/2015/01/27/react-v0.13.0-beta-1.html#es6-classes
-   */
   constructor(props) {
     super(props);
     this.state = UserStore.getState();
@@ -66,9 +63,11 @@ export default class Login extends React.Component {
         renderedResult = (<h1>Waiting ...</h1>);
       } else {
         renderedResult = (
-          <div>
-            <h1>Login will go here</h1>
-            <div ref='clefButton' data-app-id={this._getAppID()} data-redirect-url={this._getRedirectURL()} data-type="login" data-embed="true" data-state={this._getState()}></div>
+          <div className={styles.login}>
+            <p>Login below to get started</p>
+            <div className={styles.login__clef}>
+              <div ref='clefButton' data-app-id={this._getAppID()} data-redirect-url={this._getRedirectURL()} data-type="login" data-embed="true" data-state={this._getState()}></div>
+            </div>
           </div>
         );
       }

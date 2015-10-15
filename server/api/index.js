@@ -9,6 +9,7 @@ router.use(bodyParser.json())
 
 var authentication = require('../lib/authentication')
 router.use(authentication.apiKeyAuth)
+router.use(authentication.sessionAuth)
 router.use(authentication.restrict().unless({
   method: ['GET']
 }))

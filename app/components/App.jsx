@@ -5,6 +5,7 @@ import ConfigStore from 'stores/ConfigStore'
 import Navigation from 'components/Navigation';
 
 import 'scss/main';
+import styles from 'scss/components/_app';
 
 /*
  * This component operates as a "Controller-View". It listens for changes in the
@@ -28,8 +29,10 @@ export default class App extends React.Component {
         UserStore: UserStore,
         ConfigStore: ConfigStore
       }}>
-        <Navigation />
-        {this.props.children}
+        <div className={styles.app}>
+          <Navigation />
+          {this.props.children}
+        </div>
       </AltContainer>
     );
   }

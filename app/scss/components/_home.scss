@@ -1,5 +1,23 @@
+.home_header {
+	font-size: 60px;
+}
 
 .home__header,
 .home__subheader {
-    text-align: center;
+	margin: 5px;
+	text-align: center;
+}
+
+.home__input {
+	width: 80%;
+	border: none;
+	box-shadow: none;
+	font-size: 30px;
+	margin: 50px auto;
+	padding: 10px;
+  display: block;
+  text-align: center;
+  &:active {
+  	focus: none;
+  }
 }

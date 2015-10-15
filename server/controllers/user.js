@@ -16,7 +16,7 @@ exports.getClefCallback = [state.verifyStateParameter, function(req, res, next) 
             id: user.id,
             loggedInAt: Date.now()
           }
-          res.redirect('/')
+          res.redirect('/dashboard')
         })
     }
   })

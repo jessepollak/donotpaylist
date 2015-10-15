@@ -1,7 +1,9 @@
-var addressAPI = require('../controllers/address.js');
-var endorsementAPI = require('../controllers/endorsement.js');
-var reportAPI = require('../controllers/report.js');
-var userAPI = require('../controllers/user.js');
+var addressAPI = require('../controllers/address.js')
+var endorsementAPI = require('../controllers/endorsement.js')
+var reportAPI = require('../controllers/report.js')
+var userAPI = require('../controllers/user.js')
+var apiKeyAPI = require('../controllers/apiKey.js')
+
 
 module.exports = function(router) {
   // Address routes
@@ -15,4 +17,7 @@ module.exports = function(router) {
 
   router.route('/endorsements').post(endorsementAPI.postEndorsement)
   router.route('/endorsements/:endorsementID').get(endorsementAPI.getEndorsement)
+
+  router.route('/keys').post(apiKeyAPI.postAPIKey)
+  router.route('/keys').get(apiKeyAPI.getAPIKeys)
 }

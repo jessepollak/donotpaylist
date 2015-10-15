@@ -1,11 +1,24 @@
-@import "components/home";
+@import "settings";
+
+body, html {
+	background: $color-background;
+}
 
 body,
 body * {
-    font-family: 'Avenir', sans-serif;
+	font-family: 'Avenir', sans-serif;
 }
 
-.home__header,
-.home__subheader {
-    text-align: center;
+h1, h2, h3, h4, h5 {
+	color: white;
+	font-weight: normal;
+}
+
+.app {
+	width: 800px;
+	margin: auto;
+}
+
+.home__header {
+	text-align: center;
 }

@@ -5,6 +5,7 @@ import Route from 'react-router';
 import Home from 'components/Home';
 import App from 'components/App';
 import Login from 'components/Login';
+import Dashboard from 'components/Dashboard';
 
 import UserStore from 'stores/UserStore';
 
@@ -18,5 +19,6 @@ export default (
   <Route component={App}>
     <Route path="/" component={Home} />
     <Route path="login" component={Login} />
+    <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
   </Route>
 );

@@ -1,3 +1,4 @@
+var Promise = require('bluebird')
 var hat = require('hat')
 
 module.exports = function(sequelize, DataTypes) {
@@ -13,8 +14,17 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: hat,
       unique: true
     }
-  }, {
+  },
+  {
+    instanceMethods: {
+      serialize: function(scope) {
+        return this.get(scope)
+      }
+    },
     classMethods: {
+      createFromAPI: function(data) {
+        return APIKey.create(data)
+      },
       associate: function(models) {
         APIKey.belongsTo(models.User)
       }

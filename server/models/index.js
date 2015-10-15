@@ -48,7 +48,12 @@ function serialize(object) {
     if (_.isArray(object)) {
       return Promise.all(_.map(object, serialize))
     } else if (_.isFunction(object.serialize)) {
-      return object.serialize({ role: 'public' }).then(serialize)
+      var serialized = object.serialize({ role: 'public' })
+      if (_.isFunction(serialized.then)) {
+        return serialized.then(serialize)
+      } else {
+        return serialize(serialized)
+      }
     } else if (_.isObject(object)) {
       return Promise.all(_.map(object, function(v, k) {
         return serialize(v).then(function(data) {
@@ -63,6 +68,7 @@ function serialize(object) {
   return Promise.resolve(object)
 }
 
+db.serialize = serialize
 db.middleware = function() {
   return function(req, res, next) {
     res.sendModels = function(object) {

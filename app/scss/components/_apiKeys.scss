@@ -1,0 +1,35 @@
+.apiKeys {
+  margin-top: 30px;
+}
+
+.apiKey__container {
+  margin: 10px 0;
+}
+
+.apiKey {
+  display: inline-block;
+  border: 1px solid #eee;
+  margin: 15px 0;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.apiKey__el {
+  margin: 8px 0;
+}
+
+.apiKey__label {
+  font-weight: 500;
+  margin-right: 10px;
+  width: 50px;
+  font-size: 14px;
+  background: #eee;
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+
+.apiKey__content {
+  width: 300px;
+  font-size: 15px;
+}

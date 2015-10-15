@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 import UserStore from 'stores/UserStore'
 
+import styles from 'scss/components/_navigation'
+
 export default class Navigation extends React.Component {
   constructor(props) {
     super(props);
@@ -23,17 +25,27 @@ export default class Navigation extends React.Component {
     })
   }
 
-  _renderLoginLink = () => {
+  _renderActions = () => {
+    var content;
     if (!this.state.user.get('authenticated')) {
-      return <Link to="/login">Log in</Link>
+      content = <Link to="/login">Log in</Link>
+    } else {
+      content = <span>
+        <Link to="/">Home</Link>
+        <Link to="/dashboard">Dashboard</Link>
+      </span>
     }
+
+    return (<div className={styles.navigation__right}>
+      {content}
+    </div>)
   }
 
   render() {
     return (
-      <nav role="navigation">
+      <nav role="navigation" className={styles.navigation}>
           <Link to="/">Do Not Pay</Link>
-          { this._renderLoginLink() }
+          { this._renderActions() }
       </nav>
     );
   }
