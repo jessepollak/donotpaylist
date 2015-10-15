@@ -1,8 +1,10 @@
+/*global ClefButton */
 import React from 'react';
 import Immutable from 'immutable';
 
 import UserActions from 'actions/UserActions';
 import UserStore from 'stores/UserStore';
+import ConfigStore from 'stores/ConfigStore'
 
 export default class Login extends React.Component {
   /*
@@ -17,6 +19,7 @@ export default class Login extends React.Component {
 
   componentDidMount() {
     UserStore.listen(this._onChange);
+    this._renderClefLogin()
   }
 
   componentWillUnmount() {
@@ -38,6 +41,22 @@ export default class Login extends React.Component {
     });
   }
 
+  _renderClefLogin = () => {
+    ClefButton.initialize({ el: this.refs.clefButton.getDOMNode() })
+  }
+
+  _getRedirectURL = () => {
+    return ConfigStore.getState().config.get('baseURL') + '/login/callback'
+  }
+
+  _getState = () => {
+    return ConfigStore.getState().config.get('state')
+  }
+
+  _getAppID = () => {
+    return ConfigStore.getState().config.get('clefAppID')
+  }
+
   render() {
     let renderedResult;
     if (this.state.user.get('authenticated')) {
@@ -49,6 +68,7 @@ export default class Login extends React.Component {
         renderedResult = (
           <div>
             <h1>Login will go here</h1>
+            <div ref='clefButton' data-app-id={this._getAppID()} data-redirect-url={this._getRedirectURL()} data-type="login" data-embed="true" data-state={this._getState()}></div>
           </div>
         );
       }

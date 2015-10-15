@@ -65,8 +65,8 @@ function serialize(object) {
 
 db.middleware = function() {
   return function(req, res, next) {
-    res.sendModels = function(maybeArray) {
-      serialize(maybeArray).then(function(data) {
+    res.sendModels = function(object) {
+      serialize(object).then(function(data) {
         res.json(data)
       }, next)
     }

@@ -2,26 +2,36 @@
  * Routes for express app
  */
 var express = require('express');
-var users = require('../controllers/users');
+var userController = require('../controllers/user');
 var api = require('../api')
 var _ = require('lodash');
 var Header = require('../../public/assets/header.server');
 var App = require('../../public/assets/app.server');
+var state = require('../lib/state')
+var secrets = require('./secrets')
+var authentication = require('../lib/authentication')
 
-module.exports = function(app, passport) {
+module.exports = function(app) {
   // API routes
   app.use('/api', api)
   app.use('/api/v1', api)
 
-  // user routes
-  app.post('/login', users.postLogin);
-  app.post('/signup', users.postSignUp);
 
+  // user routes
+  app.get('/login/callback', userController.getClefCallback)
+  app.post('/logout', userController.postLogout)
+
+  app.use(authentication.sessionAuth)
   app.get('*', function(req, res, next) {
     // We don't want to be seeding and generating markup with user information
     var user = req.user ? { authenticated: true, isWaiting: false } : { authenticated: false, isWaiting: false };
 
     res.locals.data =  {
+      ConfigStore: { config: {
+        baseURL: req.protocol + '://' + req.get('host'),
+        state: state.generateRandomStateParameter(req.session),
+        clefAppID: secrets.clefAppID
+      } },
       UserStore: { user: user }
     };
     next();

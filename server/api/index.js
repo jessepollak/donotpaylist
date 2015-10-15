@@ -7,8 +7,9 @@ var router = express.Router()
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(bodyParser.json())
 
-var authentication = require('./authentication')
-router.use(authentication().unless({
+var authentication = require('../lib/authentication')
+router.use(authentication.apiKeyAuth)
+router.use(authentication.restrict().unless({
   method: ['GET']
 }))
 

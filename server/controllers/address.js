@@ -42,9 +42,3 @@ exports.getAddressEndorsements = Promise.coroutine(
       .then(res.sendModels, next)
   }
 );
-
-// exports.postAddress = Promise.coroutine(
-//   function *postAddress(req) {
-//     return 'welcome to the post address controller!';
-// });
-

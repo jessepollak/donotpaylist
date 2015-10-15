@@ -10,7 +10,7 @@ var methodOverride = require('method-override');
 var httpProxy = require('http-proxy');
 var proxy = httpProxy.createProxyServer();
 
-module.exports = function (app, passport) {
+module.exports = function (app) {
   app.set('port', (process.env.PORT || 3000));
 
   // X-Powered-By header has no functional value.
@@ -72,14 +72,11 @@ module.exports = function (app, passport) {
 
   var node_env = process.env.NODE_ENV;
   console.log('Environment: ' + node_env);
-  if(node_env === 'production') {
-    sess.cookie.secure = true; // Serve secure cookies
+  if(node_env !== 'production') {
+    sess.cookie.secure = false; // Serve insecure cookies when not in production
   }
 
   app.use(session(sess));
-
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   app.use(flash());
 
