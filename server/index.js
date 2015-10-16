@@ -1,4 +1,5 @@
 var express = require('express')
+var http = require('http')
 var fs = require('fs')
 var epilogue = require('epilogue')
 var secrets = require('./config/secrets')
@@ -17,5 +18,7 @@ require('./config/routes')(app)
 
 
 models.sequelize.sync().then(function () {
-  var server = app.listen(app.get('port'))
+  http.createServer(app).listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + app.get('port'))
+  })
 })
