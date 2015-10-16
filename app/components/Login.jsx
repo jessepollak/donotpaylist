@@ -1,9 +1,8 @@
 /*global ClefButton */
-import React from 'react';
-import Immutable from 'immutable';
+import React from 'react'
+import Immutable from 'immutable'
 
-import UserActions from 'actions/UserActions';
-import UserStore from 'stores/UserStore';
+import UserStore from 'stores/UserStore'
 import ConfigStore from 'stores/ConfigStore'
 
 import styles from 'scss/components/_login'
@@ -29,17 +28,8 @@ export default class Login extends React.Component {
     });
   }
 
-  _onLoginSubmit = () => {
-    const email = React.findDOMNode(this.refs.email).value;
-    const password = React.findDOMNode(this.refs.password).value;
-    UserActions.manuallogin({
-      email: email,
-      password: password
-    });
-  }
-
   _renderClefLogin = () => {
-    ClefButton.initialize({ el: this.refs.clefButton.getDOMNode() })
+    ClefButton.initialize({ el: this.refs.clefButton })
   }
 
   _getRedirectURL = () => {

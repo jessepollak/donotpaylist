@@ -1,0 +1,34 @@
+@import "../settings";
+
+.search {
+  position: relative;
+  width: 80%;
+  margin: 50px auto 20px auto;
+}
+
+.search__spinner {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  overflow: hidden;
+}
+
+.search__spinner--hidden {
+  compose: search__spinner;
+  display: none;
+}
+
+.search__input {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  border-radius: 3px;
+  font-size: 30px;
+  padding: 10px 0;
+  display: block;
+  text-align: center;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}

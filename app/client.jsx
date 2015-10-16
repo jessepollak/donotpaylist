@@ -1,5 +1,7 @@
+/* eslint no-unused-vars: 0 */
+import Iso from 'iso'
 import React from 'react';
-import Iso from 'iso';
+import ReactDOM from 'react-dom'
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { Router } from 'react-router';
 
@@ -11,5 +13,5 @@ import routes from 'routes.jsx';
  */
 Iso.bootstrap((state, _, container) => {
   alt.bootstrap(state);
-  React.render(<Router history={createBrowserHistory()} children={routes} />, container);
+  ReactDOM.render(<Router history={createBrowserHistory()} children={routes} />, container);
 });

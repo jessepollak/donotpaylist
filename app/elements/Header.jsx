@@ -1,7 +1,8 @@
-import React from 'react';
-import Helmet from 'react-helmet';
+import React from 'react'
+import Helmet from 'react-helmet'
+import ReactDOMServer from 'react-dom/server'
 
-import config from 'helmconfig.js';
+import config from 'helmconfig.js'
 
 class Header extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class Header extends React.Component {
   }
 }
 
-React.renderToString(<Header />);
+ReactDOMServer.renderToString(<Header />);
 let header = Helmet.rewind();
 
 export default header;

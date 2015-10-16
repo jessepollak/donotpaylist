@@ -101,8 +101,7 @@ module.exports = [
     },
     externals: [
       {
-        'alt/AltContainer': true,
-        'react/addons': true
+        'alt/AltContainer': true
       },
       /^[a-z\-0-9]+$/
     ],

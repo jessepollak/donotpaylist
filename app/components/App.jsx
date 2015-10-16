@@ -3,6 +3,12 @@ import AltContainer from 'alt/AltContainer';
 import UserStore from 'stores/UserStore';
 import ConfigStore from 'stores/ConfigStore'
 import Navigation from 'components/Navigation';
+import { isBrowser } from 'utils/environment'
+
+if (isBrowser()) {
+  require('velocity-react/node_modules/velocity-animate')
+  require('velocity-react/node_modules/velocity-animate/velocity.ui')
+}
 
 import 'scss/main';
 import styles from 'scss/components/_app';
