@@ -9,7 +9,7 @@ module.exports = {
   jsonWebTokenSecret: process.env.JSON_WEB_TOKEN_SECRET || 'Your JSON web token secret goes here',
   clefAppID: process.env.CLEF_APP_ID || "d5c497d85f986be65471108f722d2a0a",
   clefAppSecret: process.env.CLEF_APP_SECRET || "cfd75eb01aa935c23c75519403340e43",
-  pusherAppID: process.env.PUSHER_APP_ID
-  pusherID: process.env.PUSHER_ID
+  pusherAppID: process.env.PUSHER_APP_ID,
+  pusherID: process.env.PUSHER_ID,
   pusherSecret: process.env.PUSHER_SECRET
 };
