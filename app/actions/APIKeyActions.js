@@ -14,6 +14,19 @@ class APIKeyActions {
   createfail(err) {
     this.dispatch(err)
   }
+
+  delete(key) {
+    this.dispatch(key)
+    return API.delete('/keys/' + key.get('id')).then(this.actions.deletesuccess.bind(this, key), this.actions.deletefail)
+  }
+
+  deletefail() {
+    this.dispatch()
+  }
+
+  deletesuccess(key) {
+    this.dispatch(key)
+  }
 }
 
 export default alt.createActions(APIKeyActions);

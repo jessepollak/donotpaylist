@@ -1,6 +1,8 @@
 var Promise = require('bluebird')
 var series = require('middleware-flow').series
+var _ = require('underscore')
 
+var errors = require('../lib/errors')
 var authentication = require('../lib/authentication')
 var models = require('../models')
 var APIKey = models.APIKey
@@ -21,6 +23,20 @@ exports.postAPIKey = [
     }
   )
 ]
+
+exports.deleteAPIKey = Promise.coroutine(
+  function *deleteAPIKey(req, res, next) {
+    var key = _.find(req.user.api_keys, (key) => { return key.id = req.params.apiKeyID })
+    if (key) {
+      key.destroy()
+        .then(function() {
+          res.json({ success: true })
+        }, next)
+    } else {
+      next(errors.RequiresAuthenticationError)
+    }
+  }
+)
 
 exports.getAPIKeys = [
   authentication.restrict(),

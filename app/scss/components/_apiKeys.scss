@@ -33,3 +33,13 @@
   width: 300px;
   font-size: 15px;
 }
+
+.apiKey__delete {
+  font-size: 13px;
+  color: #999;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: #555;
+  }
+}

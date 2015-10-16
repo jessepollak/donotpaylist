@@ -19,6 +19,7 @@ class APIKey extends React.Component {
             <span className={styles.apiKey__label}>Secret</span>
             <input className={styles.apiKey__content} value={this.props.secret} disabled={true}/>
           </div>
+          <a onClick={this.props.onDelete} className={styles.apiKey__delete}>Revoke</a>
         </div>
       </div>
     )
@@ -50,9 +51,13 @@ export default class APIKeys extends React.Component {
     APIKeyActions.create()
   }
 
+  _delete(key) {
+    APIKeyActions.delete(key)
+  }
+
   _renderKeys() {
     return this.state.keys.map((key) => {
-      return <APIKey id={key.get('id')} secret={key.get('secret')} key={key.get('id')} />
+      return <APIKey id={key.get('id')} secret={key.get('secret')} key={key.get('id')} onDelete={this._delete.bind(this, key)} />
     })
   }
 

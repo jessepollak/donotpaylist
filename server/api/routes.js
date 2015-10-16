@@ -20,4 +20,5 @@ module.exports = function(router) {
 
   router.route('/keys').post(apiKeyAPI.postAPIKey)
   router.route('/keys').get(apiKeyAPI.getAPIKeys)
+  router.route('/keys/:apiKeyID').delete(apiKeyAPI.deleteAPIKey)
 }
