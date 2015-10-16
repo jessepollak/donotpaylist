@@ -97,7 +97,7 @@ class EndorsementsTable extends React.Component {
   }
 
   render() {
-    if (this.state.endorsements) {
+    if (this.state.endorsements && this.state.endorsements.size) {
       return (
         <div className={styles.addressView__table}>
           <h5>Endorsements</h5>

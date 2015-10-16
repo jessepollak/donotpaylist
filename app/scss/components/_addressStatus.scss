@@ -11,9 +11,19 @@
   font-size: 26px;
 }
 
-.addressStatus--neutral {
+.addressStatus--noData {
   composes: addressStatus;
   background: #999;
+}
+
+.addressStatus--bad {
+  composes: addressStatus;
+  background: $color-button-error;
+}
+
+.addressStatus--neutral {
+  composes: addressStatus;
+  background: $color-button-secondary;
 }
 
 .addressStatus--good {
