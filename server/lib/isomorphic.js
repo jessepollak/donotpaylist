@@ -6,7 +6,7 @@ var secrets = require('../config/secrets')
 
 var userToStore = function(user) {
   if (user) {
-    return { authenticated: true }
+    return { authenticated: true, id: user.id }
   } else {
     return { authenticated: false }
   }
@@ -23,7 +23,8 @@ module.exports.setupStores = function(req, res, next) {
     ConfigStore: { config: {
       baseURL: req.protocol + '://' + req.get('host'),
       state: state.generateRandomStateParameter(req.session),
-      clefAppID: secrets.clefAppID
+      clefAppID: secrets.clefAppID,
+      pusherID: secrets.pusherID
     } },
     UserStore: { user: userToStore(req.user) },
     APIKeyStore: { keys: apiKeysToStore(req.user) }

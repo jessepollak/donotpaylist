@@ -1,4 +1,6 @@
+var Pusher = require('pusher')
 var Promise = require('bluebird')
+var secrets = require('../config/secrets')
 
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('user', {
@@ -25,7 +27,16 @@ module.exports = function(sequelize, DataTypes) {
       },
       logout: function() {
         this.logged_out_at = Date.now()
-        return this.save()
+        return this.save().then(function() {
+          var pusher = new Pusher({
+            appId: secrets.pusherAppID,
+            key: secrets.pusherID,
+            secret: secrets.pusherSecret,
+            encrypted: true
+          })
+          pusher.port = 443
+          pusher.trigger(String(this.id), 'logout', {})
+        })
       }
     },
     classMethods: {

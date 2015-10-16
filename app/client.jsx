@@ -13,5 +13,6 @@ import routes from 'routes.jsx';
  */
 Iso.bootstrap((state, _, container) => {
   alt.bootstrap(state);
+  console.log('in browser')
   ReactDOM.render(<Router history={createBrowserHistory()} children={routes} />, container);
 });

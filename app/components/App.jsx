@@ -1,6 +1,7 @@
-import React from 'react';
+import React from 'react'
 import AltContainer from 'alt/AltContainer'
 import UserStore from 'stores/UserStore'
+import UserActions from 'actions/UserActions'
 import ConfigStore from 'stores/ConfigStore'
 import Navigation from 'components/Navigation'
 import Footer from 'components/Footer'
@@ -30,6 +31,25 @@ import styles from 'scss/components/_app';
  * what they need. In addition to keeping the controller-like behavior at the top of the hierarchy, and thus keeping our descendant
  */
 export default class App extends React.Component {
+
+  componentDidMount() {
+    this.setupLogoutListener()
+  }
+
+  setupLogoutListener() {
+    var user = UserStore.getState().user
+    if (user && user.get('authenticated') && isBrowser()) {
+      var Pusher = require('pusher-js')
+      var pusher = new Pusher(ConfigStore.getState().config.get('pusherID'), { encrypted: true })
+      pusher.subscribe(String(user.get('id'))).bind('logout', this.handleLogout)
+    }
+  }
+
+  handleLogout() {
+    UserActions.logout()
+  }
+
+
   render() {
     return (
       <AltContainer stores={{
