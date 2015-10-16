@@ -4,7 +4,7 @@
   background: $color-dashboard-background;
   border-radius: 5px;
   padding: 20px;
-  box-shadow: 0 0 0 1px rgba(14,41,57,.12),0 2px 1px rgba(14,41,57,.44),inset 0 0px 2px rgba(14,41,57,.15);
+  box-shadow: $box-shadow-rounded;
   min-height: 600px;
 
   h1, h2, h3, h4, h5, h6, p {

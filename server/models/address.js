@@ -37,6 +37,11 @@ module.exports = function(sequelize, DataTypes) {
         return promise.then(function(data) {
           data.reports = _.pluck(data.reports, "id")
           data.endorsements = _.pluck(data.endorsements, "id")
+
+          data.number_of_reports = data.reports.length
+          data.number_of_endorsements = data.endorsements.length
+          data.trust_score = data.number_of_endorsements - data.number_of_reports
+
           return data
         })
       }

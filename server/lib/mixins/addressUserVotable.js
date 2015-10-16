@@ -31,7 +31,6 @@ var classMethods = function(modelName, sequelize) {
     setRoles: function(models) {
       var Model = models[modelName]
       Model.rawAttributes.user_id.roles = { public: false }
-      Model.rawAttributes.created_at.roles = { public: false }
       Model.rawAttributes.updated_at.roles = { public: false }
     }
   }
