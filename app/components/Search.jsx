@@ -3,10 +3,13 @@ import bitcoinAddress from 'bitcoin-address'
 import SearchActions from 'actions/SearchActions'
 import SearchStore from 'stores/SearchStore'
 
+import AddressView from 'components/AddressView'
+import { VelocityComponent } from 'velocity-react'
+
 import { isBrowser } from 'utils/environment'
 import styles from 'scss/components/_search'
 
-export default class Search extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = SearchStore.getState()
@@ -56,6 +59,38 @@ export default class Search extends React.Component {
         onKeyUp={this._validateAndSearch} />
       { this._renderSpinner(this.state.isLoading) }
     </div>
+  }
+}
+
+export default class SearchWithAddressView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = SearchStore.getState()
+  }
+
+  componentDidMount() {
+    SearchStore.listen(this._onChange)
+  }
+
+  componentWillUnmount() {
+    SearchStore.unlisten(this._onChange)
+  }
+
+  _onChange = () => {
+    var state = SearchStore.getState()
+    state.cachedAddress = this.state.address
+    this.setState(state)
+  }
+
+  render() {
+    return (
+      <div>
+        <Search />
+        <VelocityComponent ref="velocity" animation={'transition.expand' + (this.state.address ? 'In' : 'Out') } duration={200}>
+          <AddressView address={this.state.address || this.state.cachedAddress} />
+        </VelocityComponent>
+      </div>
+    )
   }
 }
 

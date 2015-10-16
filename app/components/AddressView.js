@@ -1,10 +1,9 @@
 import React from 'react'
-import SearchStore from 'stores/SearchStore'
 import API from 'utils/api'
+import Immutable from 'immutable'
 
 import AddressStatus from 'components/AddressStatus'
 import styles from 'scss/components/_addressView'
-import { VelocityComponent } from 'velocity-react'
 
 import FixedDataTable from 'fixed-data-table'
 import ta from 'time-ago'
@@ -129,49 +128,34 @@ class EndorsementsTable extends React.Component {
 }
 
 export default class AddressView extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = SearchStore.getState()
-  }
-
-  componentDidMount() {
-    SearchStore.listen(this._onChange)
-  }
-
-  componentWillUnmount() {
-    SearchStore.unlisten(this._onChange)
-  }
-
-  _onChange = () => {
-    this.setState(SearchStore.getState());
-  }
-
   _rowGetter = () => {
-    return [this.state.address.get('number_of_reports'), this.state.address.get('number_of_endorsements')]
+    return [this.props.address.get('number_of_reports'), this.props.address.get('number_of_endorsements')]
   }
 
   _renderAddress = () => {
-    if (this.state.address) {
-      return (
-        <div>
-          <AddressStatus address={this.state.address} />
-          <div className={styles.addressView__details}>
-            <ReportsTable address={this.state.address} key={'reports-' + this.state.address.get('id')} />
-            <EndorsementsTable address={this.state.address} key={'endorsements-' + this.state.address.get('id')} />
-            <div style={{ clear: 'both' }}></div>
-          </div>
+    return (
+      <div>
+        <AddressStatus address={this.props.address} />
+        <div className={styles.addressView__details}>
+          <ReportsTable address={this.props.address} key={'reports-' + this.props.address.get('id')} />
+          <EndorsementsTable address={this.props.address} key={'endorsements-' + this.props.address.get('id')} />
+          <div style={{ clear: 'both' }}></div>
         </div>
-      )
-    }
+      </div>
+    )
   }
 
   render() {
+    if (!this.props.address) {
+      return <div></div>
+    }
+
     return (
-      <VelocityComponent ref="velocity" animation={'transition.flipBounceY' + (this.state.address ? 'In' : 'Out') } duration={500}>
-        <div className={styles.addressView}>
-          { this._renderAddress() }
-        </div>
-      </VelocityComponent>
+      <div className={styles.addressView}>
+        { this._renderAddress() }
+      </div>
     )
   }
 }
+
+AddressView.propTypes = { address: React.PropTypes.instanceOf(Immutable.Map) }
