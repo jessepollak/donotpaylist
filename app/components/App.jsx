@@ -1,8 +1,9 @@
 import React from 'react';
-import AltContainer from 'alt/AltContainer';
-import UserStore from 'stores/UserStore';
+import AltContainer from 'alt/AltContainer'
+import UserStore from 'stores/UserStore'
 import ConfigStore from 'stores/ConfigStore'
-import Navigation from 'components/Navigation';
+import Navigation from 'components/Navigation'
+import Footer from 'components/Footer'
 import { isBrowser } from 'utils/environment'
 
 if (isBrowser()) {
@@ -38,6 +39,7 @@ export default class App extends React.Component {
         <div className={styles.app}>
           <Navigation />
           {this.props.children}
+          <Footer />
         </div>
       </AltContainer>
     );
