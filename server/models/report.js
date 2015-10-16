@@ -16,7 +16,13 @@ module.exports = function(sequelize, DataTypes) {
       },
       type: {
         type: DataTypes.STRING,
-        required: true
+        required: true,
+        validate: {
+          isIn: {
+            args: [['malicious', 'technical']],
+            msg: "Type must be either 'malicious' or 'technical'."
+          }
+        }
       },
       description: DataTypes.STRING
     },
