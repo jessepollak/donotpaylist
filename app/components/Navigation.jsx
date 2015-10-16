@@ -31,7 +31,7 @@ export default class Navigation extends React.Component {
       content = <Link to="/login">Log in</Link>
     } else {
       content = <span>
-        <Link to="/">Home</Link>
+        <Link to="/">Search</Link>
         <Link to="/dashboard">Dashboard</Link>
       </span>
     }
