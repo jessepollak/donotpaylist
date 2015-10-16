@@ -56,7 +56,13 @@ module.exports = function(sequelize, DataTypes) {
               sequelize.models.Endorsement
             ]
           }
-        )
+        ).then(function(address) {
+          if (address) {
+            return address
+          } else {
+            return Address.build({ id: id })
+          }
+        })
       },
       associate: function(models) {
         Address.hasMany(models.Report)
