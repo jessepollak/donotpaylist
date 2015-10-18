@@ -1,0 +1,50 @@
+@import "../settings";
+
+.report {
+  position: relative;
+  width: 80%;
+  margin: 50px auto 20px auto;
+}
+
+.report p {
+  text-align: center;
+  color: white;
+}
+
+.report__header {
+  margin-top: 50px;
+  text-align: center;
+  color:white;
+  margin-bottom: 50px;
+}
+
+.report__input {
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  font-size: 30px;
+  padding: 10px 0;
+  display: block;
+  text-align: center;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.report__textarea {
+  width: 100%;
+  margin-top: 1%;
+  border: none;
+  border-radius: 3px;
+  font-size: 30px;
+  padding: 10px 0;
+  padding-bottom: 15%;
+  display: block;
+  text-align: center;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+

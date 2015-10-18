@@ -28,7 +28,7 @@ class Search extends React.Component {
   }
 
   _validateAndSearch = () => {
-    var maybeAddress = this.refs.input.value
+    var maybeAddress = this.refs.input.value || ''
     if (bitcoinAddress.validate(maybeAddress)) {
       if (!this.state.address || this.state.address.get('id') !== maybeAddress) {
         SearchActions.start(maybeAddress)

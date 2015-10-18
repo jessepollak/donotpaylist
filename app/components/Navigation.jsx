@@ -28,7 +28,9 @@ export default class Navigation extends React.Component {
   _renderActions = () => {
     var content;
     if (!this.state.user.get('authenticated')) {
-      content = <Link to="/login">Log in</Link>
+      content = <span>
+                  <Link to="/login">Log in</Link>
+                </span>
     } else {
       content = <span>
         <Link to="/">Search</Link>
@@ -44,8 +46,11 @@ export default class Navigation extends React.Component {
   render() {
     return (
       <nav role="navigation" className={styles.navigation}>
+        <span>
           <Link to="/">Do Not Pay</Link>
+          <Link to="/report">Report</Link>
           { this._renderActions() }
+        </span>
       </nav>
     );
   }
