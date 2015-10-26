@@ -1,0 +1,56 @@
+@import "../settings";
+
+.addressReview {
+
+}
+
+.addressReview__endorseButton,
+.addressReview__reportButton {
+  float: left;
+  span {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+}
+
+.addressReview__reportButton {
+  margin-left: 20px;
+  span {
+    color: $color-red;
+  }
+}
+
+.addressReview__endorseButton {
+  span {
+    color: $color-green;
+  }
+}
+
+.addressReview__form {
+  margin: 20px 0 0 0;
+}
+
+.addressReview__field {
+  margin: 20px 0;
+  label {
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  :global {
+    .Select-control,
+    .Select-menu-outer {
+      width: 250px;
+    }
+  }
+
+  textarea {
+    width: 400px;
+    height: 150px;
+    border-color: #ddd;
+    font-size: 16px;
+    padding: 5px;
+  }
+}

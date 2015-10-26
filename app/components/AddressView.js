@@ -3,6 +3,7 @@ import API from 'utils/api'
 import Immutable from 'immutable'
 
 import AddressStatus from 'components/AddressStatus'
+import AddressReview from 'components/AddressReview'
 import styles from 'scss/components/_addressView'
 
 import FixedDataTable from 'fixed-data-table'
@@ -97,11 +98,9 @@ class EndorsementsTable extends React.Component {
   }
 
   render() {
+    let content
     if (this.state.endorsements && this.state.endorsements.size) {
-      return (
-        <div className={styles.addressView__table}>
-          <h5>Endorsements</h5>
-          <Table
+      content = <Table
             rowHeight={50}
             rowGetter={this._rowGetter}
             rowsCount={this.state.endorsements.size}
@@ -119,11 +118,16 @@ class EndorsementsTable extends React.Component {
               dataKey={1}
             />
           </Table>
-        </div>
-      )
     } else {
-      return <div></div>
+      content = <p>No endorsements.</p>
     }
+
+    return (
+      <div className={styles.addressView__table}>
+        <h5>Endorsements</h5>
+        {content}
+      </div>
+    )
   }
 }
 
@@ -135,11 +139,17 @@ export default class AddressView extends React.Component {
   _renderAddress = () => {
     return (
       <div>
-        <AddressStatus address={this.props.address} />
+        <div className={styles.addressView__status}>
+          <AddressStatus address={this.props.address} />
+        </div>
         <div className={styles.addressView__details}>
           <ReportsTable address={this.props.address} key={'reports-' + this.props.address.get('id')} />
           <EndorsementsTable address={this.props.address} key={'endorsements-' + this.props.address.get('id')} />
           <div style={{ clear: 'both' }}></div>
+        </div>
+        <div className={styles.addressView__feedback}>
+          <p>How was your experience with this address?</p>
+          <AddressReview address={this.props.address} />
         </div>
       </div>
     )

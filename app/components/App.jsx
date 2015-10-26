@@ -10,6 +10,7 @@ import { isBrowser } from 'utils/environment'
 if (isBrowser()) {
   require('velocity-react/node_modules/velocity-animate')
   require('velocity-react/node_modules/velocity-animate/velocity.ui')
+  require('font-awesome-webpack')
 }
 
 import 'scss/main';
